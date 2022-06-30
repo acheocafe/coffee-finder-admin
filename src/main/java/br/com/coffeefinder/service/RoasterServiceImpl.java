@@ -9,16 +9,17 @@ import org.springframework.stereotype.Service;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.model.Roaster;
 import br.com.coffeefinder.repository.RoasterRepository;
+import br.com.coffeefinder.service.interfaces.RoasterService;
 
 /**
  * RoasterService
  */
 @Service
-public class RoasterService {
+public class RoasterServiceImpl implements RoasterService{
 
   private final RoasterRepository roasterRepository;
 
-  public RoasterService(final RoasterRepository roasterRepository) {
+  public RoasterServiceImpl(final RoasterRepository roasterRepository) {
     this.roasterRepository = roasterRepository;
   }
 
@@ -28,7 +29,7 @@ public class RoasterService {
 
   public Roaster findById(final Long id) {
     return roasterRepository.findById(id)
-      .orElseThrow(() -> new RoasterNotFoundException());
+      .orElseThrow(() -> new RoasterNotFoundException(id.toString()));
   }
 
   public List<Roaster> findAll() {
@@ -36,7 +37,7 @@ public class RoasterService {
     return allRoasters.orElseThrow(() -> new RoasterNotFoundException());
   }
 
-  public Roaster updateRoaster(final Roaster roaster, final String roasterId) throws NotFoundException {
+  public Roaster updateRoaster(final Roaster roaster, final String roasterId) {
     return roasterRepository.findById(Long.valueOf(roasterId)).map(roasterResponse -> {
       roasterRepository.save(roaster);
       return Roaster.builder().id(roaster.getId()).build();

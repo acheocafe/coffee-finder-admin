@@ -14,20 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.coffeefinder.model.Roaster;
-import br.com.coffeefinder.service.RoasterService;
+import br.com.coffeefinder.service.RoasterServiceImpl;
+import lombok.RequiredArgsConstructor;
 
 /**
  * RoasterController
  */
 @RestController
 @RequestMapping(value={"/v1/api/roasters"})
+@RequiredArgsConstructor
 public class RoasterController {
 
-  private final RoasterService roasterService;
-
-  public RoasterController(RoasterService roasterService) {
-    this.roasterService= roasterService;
-  }
+  private final RoasterServiceImpl roasterService;
 
   @GetMapping
   public ResponseEntity<List<Roaster>> findAll() {
