@@ -1,9 +1,7 @@
 package br.com.coffeefinder.service;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -24,13 +22,14 @@ import br.com.coffeefinder.repository.RoasterRepository;
 class TestRoasterService {
 
   @InjectMocks
-  RoasterService roasterService;
+  RoasterServiceImpl roasterService;
 
   @Mock
   RoasterRepository roasterRepository;
 
   @Test
   public void test_nonexistent_roaster_id_should_throw_exception() {
+
     when(roasterRepository.findById(3L)).thenReturn(Optional.empty());
 
     RoasterNotFoundException expectedException = assertThrows(RoasterNotFoundException.class,
