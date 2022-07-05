@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @AutoConfigureMockMvc
 class CoffeefinderApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+  @Test
+  void contextLoads() {}
 }

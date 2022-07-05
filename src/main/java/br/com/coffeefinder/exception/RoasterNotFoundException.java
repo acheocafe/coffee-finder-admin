@@ -8,6 +8,5 @@ public class RoasterNotFoundException extends RuntimeException {
 
   public RoasterNotFoundException() {
     super("There are not any roasters");
-
   }
 }

@@ -1,8 +1,7 @@
 package br.com.coffeefinder.mockhelpers;
 
-import java.util.List;
-
 import br.com.coffeefinder.domain.dto.RoasterDto;
+import java.util.List;
 
 public class RoasterControllerHelper {
 
