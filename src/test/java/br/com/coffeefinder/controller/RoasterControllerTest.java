@@ -5,8 +5,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,14 +14,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import br.com.coffeefinder.mockhelpers.RoasterControllerHelper;
-import br.com.coffeefinder.repository.RoasterRepository;
 import br.com.coffeefinder.service.RoasterServiceImpl;
 
-/**
- * RoasterControllerTest
- */
+/** RoasterControllerTest */
 @WebMvcTest(controllers = RoasterController.class)
-public class RoasterControllerTest {
+class RoasterControllerTest {
 
   @Autowired
   MockMvc mockMvc;
