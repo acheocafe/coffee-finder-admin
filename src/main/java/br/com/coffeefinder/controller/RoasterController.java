@@ -1,8 +1,8 @@
 package br.com.coffeefinder.controller;
 
+import br.com.coffeefinder.domain.dto.RoasterDto;
+import br.com.coffeefinder.service.RoasterServiceImpl;
 import java.util.List;
-
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,40 +13,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.coffeefinder.model.Roaster;
-import br.com.coffeefinder.service.RoasterServiceImpl;
-import lombok.RequiredArgsConstructor;
-
-/**
- * RoasterController
- */
+/** RoasterController * */
 @RestController
-@RequestMapping(value={"/v1/api/roasters"})
-@RequiredArgsConstructor
+@RequestMapping(value = {"/v1/api/roasters"})
 public class RoasterController {
 
   private final RoasterServiceImpl roasterService;
 
+  public RoasterController(RoasterServiceImpl roasterService) {
+    this.roasterService = roasterService;
+  }
+
   @GetMapping
-  public ResponseEntity<List<Roaster>> findAll() {
+  public ResponseEntity<List<RoasterDto>> findAll() {
     return new ResponseEntity<>(roasterService.findAll(), HttpStatus.OK);
   }
 
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Roaster> findById(@PathVariable Long id) {
+  public ResponseEntity<RoasterDto> findById(@PathVariable String id) {
     return new ResponseEntity<>(roasterService.findById(id), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<Roaster> saveRoaster(@RequestBody final Roaster roasterModel) {
+  public ResponseEntity<RoasterDto> saveRoaster(@RequestBody final RoasterDto roasterModel) {
+
     return new ResponseEntity<>(roasterService.save(roasterModel), HttpStatus.OK);
   }
 
   @PutMapping
-  public Roaster updateRoaster(@PathVariable final String id, @RequestBody final Roaster roasterModel)
-      throws NotFoundException {
+  public RoasterDto updateRoaster(
+      @PathVariable final String id, @RequestBody final RoasterDto roasterModel) {
     return roasterService.updateRoaster(roasterModel, id);
-
   }
-
 }

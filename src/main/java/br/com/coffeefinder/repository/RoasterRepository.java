@@ -3,7 +3,10 @@ package br.com.coffeefinder.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.coffeefinder.model.Roaster;
+import br.com.coffeefinder.domain.model.Roaster;
+
+
+
 
 /**
  * RoasterRepository
