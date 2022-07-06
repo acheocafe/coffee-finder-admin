@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RoasterDto {
 
-  private String id;
+  private Long id;
   private String name;
   private String email;
   private String phone;

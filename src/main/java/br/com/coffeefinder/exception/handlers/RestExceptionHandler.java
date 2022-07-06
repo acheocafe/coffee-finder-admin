@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(RoasterNotFoundException.class)
-  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ResponseBody
   ErrorInfo roasterNotFoundHandler(HttpServletRequest resquest, Exception ex) {
     return new ErrorInfo(resquest.getRequestURL().toString(), ex);
