@@ -16,4 +16,8 @@ public class RoasterDto {
   private String name;
   private String email;
   private String phone;
+
+  public Long idToLong() {
+    return Long.valueOf(this.id);
+  }
 }

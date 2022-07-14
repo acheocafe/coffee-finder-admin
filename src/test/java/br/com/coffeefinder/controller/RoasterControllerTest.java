@@ -5,8 +5,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import br.com.coffeefinder.controller.helper.RoasterControllerHelper;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
-import br.com.coffeefinder.mockhelpers.controller.RoasterControllerHelper;
 import br.com.coffeefinder.service.RoasterServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ class RoasterControllerTest {
   }
 
   @Test
-  void get_all_records_shold_be_not_found() throws Exception {
+  void get_all_records_should_be_not_found() throws Exception {
     when(roasterServiceImpl.findAll()).thenThrow(new RoasterNotFoundException());
     mockMvc
         .perform(

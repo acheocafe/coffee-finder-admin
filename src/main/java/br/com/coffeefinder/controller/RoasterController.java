@@ -42,7 +42,7 @@ public class RoasterController {
 
   @PutMapping
   public RoasterDto updateRoaster(
-      @PathVariable final String id, @RequestBody final RoasterDto roasterModel) {
-    return roasterService.updateRoaster(roasterModel, id);
+      @RequestBody final RoasterDto roasterModel) {
+    return roasterService.updateRoaster(roasterModel);
   }
 }

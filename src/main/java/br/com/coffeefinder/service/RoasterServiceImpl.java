@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
-/** RoasterService */
+/* RoasterService */
 @Service
 public class RoasterServiceImpl implements RoasterService {
 
@@ -39,18 +39,12 @@ public class RoasterServiceImpl implements RoasterService {
     return allRoasters.orElseThrow(RoasterNotFoundException::new);
   }
 
-  public RoasterDto updateRoaster(final RoasterDto roaster, final String roasterId) {
-    return roasterRepository
-        .findById(Long.valueOf(roasterId))
-        .map(
-            roasterResponse -> {
-              var roasterModel = roasterRepository.save(roasterMapper.toModel(roaster));
-              return roasterMapper.toDto(roasterModel);
-            })
-        .orElseThrow(() -> new RoasterNotFoundException(roasterId));
+  public RoasterDto updateRoaster(final RoasterDto roaster) {
+    var updatedRoaster = roasterRepository.save(roasterMapper.toModel(roaster));
+    return roasterMapper.toDto(updatedRoaster);
   }
 
-  public void deleteRoasterById(final Long roasterId) {
-    roasterRepository.deleteById(roasterId);
+  public void deleteRoasterById(final String roasterId) {
+    roasterRepository.deleteById(Long.valueOf(roasterId));
   }
 }

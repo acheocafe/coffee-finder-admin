@@ -1,4 +1,4 @@
-package br.com.coffeefinder.mockhelpers.service;
+package br.com.coffeefinder.service.helper;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
 import br.com.coffeefinder.domain.model.Roaster;
@@ -72,6 +72,15 @@ public class RoasterServiceHelper {
   public static Roaster mockSaveRoasterRepository() {
     return Roaster.builder()
         .id(2L)
+        .name("Roaster2")
+        .email("roaster2@outlook.com")
+        .phone("552299922244")
+        .build();
+  }
+
+  public static RoasterDto mockInputRoasterDto() {
+    return RoasterDto.builder()
+        .id("2")
         .name("Roaster2")
         .email("roaster2@outlook.com")
         .phone("552299922244")
