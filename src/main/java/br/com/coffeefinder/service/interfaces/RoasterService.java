@@ -4,13 +4,13 @@ import br.com.coffeefinder.domain.dto.RoasterDto;
 import java.util.List;
 
 public interface RoasterService {
-  public RoasterDto save(final RoasterDto roaster);
+  RoasterDto save(final RoasterDto roaster);
 
-  public RoasterDto findById(final String id);
+  RoasterDto findById(final String id);
 
-  public List<RoasterDto> findAll();
+  List<RoasterDto> findAll();
 
-  public RoasterDto updateRoaster(final RoasterDto roaster, final String roasterId);
+  RoasterDto updateRoaster(final RoasterDto roaster);
 
-  public void deleteRoasterById(final Long roasterId);
+  void deleteRoasterById(final String roasterId);
 }
