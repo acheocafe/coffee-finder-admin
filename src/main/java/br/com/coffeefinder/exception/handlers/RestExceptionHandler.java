@@ -15,8 +15,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(RoasterNotFoundException.class)
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ResponseBody
-  ErrorInfo roasterNotFoundHandler(HttpServletRequest resquest, Exception ex) {
-    return new ErrorInfo(resquest.getRequestURL().toString(), ex);
+  public ErrorInfo roasterNotFoundHandler(HttpServletRequest request, Exception ex) {
+    return new ErrorInfo(request.getRequestURL().toString(), ex);
   }
 }
 
