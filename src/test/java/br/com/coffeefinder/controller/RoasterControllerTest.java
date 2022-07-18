@@ -1,18 +1,25 @@
 package br.com.coffeefinder.controller;
 
-import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.*;
+import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.asJsonString;
+import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.mockExpectedRoaster;
+import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.mockInputRoaster;
+import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.mockPageRoaster;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import br.com.coffeefinder.domain.dto.RoasterDto;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.service.RoasterServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -27,22 +34,24 @@ class RoasterControllerTest {
 
   @Test
   void get_all_records_success() throws Exception {
-    final var expected = mockRoastersListExpected();
-    when(roasterServiceImpl.findAll()).thenReturn(expected);
+    Page<RoasterDto> expected = mockPageRoaster();
+    when(roasterServiceImpl.findPageable(ArgumentMatchers.isA(Pageable.class)))
+        .thenReturn(expected);
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/v1/api/roasters").contentType(MediaType.APPLICATION_JSON))
+            MockMvcRequestBuilders.get("/api/v1/roasters?page=1&size=20")
+                .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$", hasSize(2)))
-        .andExpect(jsonPath("$[1].name").value("Roaster2"));
+        .andExpect(jsonPath("$.content", hasSize(2)))
+        .andExpect(jsonPath("$.content[1].name").value("Roaster2"));
   }
 
   @Test
   void get_all_records_should_be_not_found() throws Exception {
-    when(roasterServiceImpl.findAll()).thenThrow(new RoasterNotFoundException());
+    when(roasterServiceImpl.findPageable(ArgumentMatchers.isA(Pageable.class))).thenThrow(new RoasterNotFoundException());
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/v1/api/roasters").contentType(MediaType.APPLICATION_JSON))
+            MockMvcRequestBuilders.get("/api/v1/roasters?page=1&size=40").contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isNotFound());
   }
 
@@ -52,7 +61,7 @@ class RoasterControllerTest {
 
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/v1/api/roasters/2")
+            MockMvcRequestBuilders.get("/api/v1/roasters/2")
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.name").exists());
@@ -64,7 +73,7 @@ class RoasterControllerTest {
     when(roasterServiceImpl.findById("2")).thenThrow(new RoasterNotFoundException());
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/v1/api/roasters/2")
+            MockMvcRequestBuilders.get("/api/v1/roasters/2")
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isNotFound());
   }
@@ -77,7 +86,7 @@ class RoasterControllerTest {
     when(roasterServiceImpl.save(mockInputRoaster)).thenReturn(mockExpectedRoaster);
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/v1/api/roasters/")
+            MockMvcRequestBuilders.post("/api/v1/roasters/")
                 .content(asJsonString(mockInputRoaster))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk());
@@ -92,7 +101,7 @@ class RoasterControllerTest {
     when(roasterServiceImpl.updateRoaster(mockInputRoaster)).thenReturn(mockExpectedRoaster);
     mockMvc
         .perform(
-            MockMvcRequestBuilders.put("/v1/api/roasters/")
+            MockMvcRequestBuilders.put("/api/v1/roasters/")
                 .content(asJsonString(mockInputRoaster))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
