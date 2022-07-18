@@ -1,15 +1,16 @@
 package br.com.coffeefinder.service.helper;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
-import br.com.coffeefinder.domain.model.Roaster;
+import br.com.coffeefinder.domain.entity.RoasterEntity;
+
 import java.util.List;
 import java.util.Optional;
 
 public class RoasterServiceHelper {
 
-  public static Optional<Roaster> mockRoasterRepositoryReturn() {
+  public static Optional<RoasterEntity> mockRoasterRepositoryReturn() {
     return Optional.ofNullable(
-        Roaster.builder()
+        RoasterEntity.builder()
             .id(2L)
             .name("Roaster2")
             .email("roaster2@outlook.com")
@@ -43,16 +44,16 @@ public class RoasterServiceHelper {
             .build());
   }
 
-  public static List<Roaster> mockFindAllRespository() {
+  public static List<RoasterEntity> mockFindAllRespository() {
 
     return List.of(
-        Roaster.builder()
+        RoasterEntity.builder()
             .id(2L)
             .name("Roaster2")
             .email("roaster2@outlook.com")
             .phone("552299922242")
             .build(),
-        Roaster.builder()
+        RoasterEntity.builder()
             .id(3L)
             .name("Roaster3")
             .email("roaster3@outlook.com")
@@ -69,8 +70,8 @@ public class RoasterServiceHelper {
         .build();
   }
 
-  public static Roaster mockSaveRoasterRepository() {
-    return Roaster.builder()
+  public static RoasterEntity mockSaveRoasterRepository() {
+    return RoasterEntity.builder()
         .id(2L)
         .name("Roaster2")
         .email("roaster2@outlook.com")
