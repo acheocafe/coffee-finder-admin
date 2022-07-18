@@ -2,7 +2,8 @@ package br.com.coffeefinder.controller;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
 import br.com.coffeefinder.service.RoasterServiceImpl;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /** RoasterController * */
 @RestController
-@RequestMapping(value = {"/v1/api/roasters"})
+@RequestMapping(value = {"/api/v1/roasters"})
 public class RoasterController {
 
   private final RoasterServiceImpl roasterService;
@@ -25,8 +26,8 @@ public class RoasterController {
   }
 
   @GetMapping
-  public ResponseEntity<List<RoasterDto>> findAll() {
-    return new ResponseEntity<>(roasterService.findAll(), HttpStatus.OK);
+  public ResponseEntity<Page<RoasterDto>> findPageable(Pageable pageable) {
+    return new ResponseEntity<>(roasterService.findPageable(pageable), HttpStatus.OK);
   }
 
   @GetMapping(value = "/{id}")

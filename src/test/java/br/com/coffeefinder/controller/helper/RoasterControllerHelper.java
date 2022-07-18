@@ -4,6 +4,9 @@ import br.com.coffeefinder.domain.dto.RoasterDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
+import org.mockito.Mockito;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 public class RoasterControllerHelper {
 
@@ -22,7 +25,9 @@ public class RoasterControllerHelper {
             .phone("219999992")
             .build());
   }
-
+public static Page<RoasterDto> mockPageRoaster(){
+    return new PageImpl<>(mockRoastersListExpected());
+}
   public static RoasterDto mockExpectedRoaster() {
     return RoasterDto.builder()
         .id("2")

@@ -1,13 +1,15 @@
 package br.com.coffeefinder.service;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
-import br.com.coffeefinder.domain.mapper.RoasterMapper;
 import br.com.coffeefinder.domain.entity.RoasterEntity;
+import br.com.coffeefinder.domain.mapper.RoasterMapper;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.repository.RoasterRepository;
 import br.com.coffeefinder.service.interfaces.RoasterService;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /* RoasterService */
@@ -33,6 +35,11 @@ public class RoasterServiceImpl implements RoasterService {
             .findById(Long.valueOf(id))
             .orElseThrow(() -> new RoasterNotFoundException(id));
     return roasterMapper.toDto(roaster);
+  }
+
+  public Page<RoasterDto> findPageable(Pageable pageable) {
+    var result = Optional.of(roasterRepository.findAll(pageable).map(roasterMapper::toDto));
+    return result.orElseThrow(RoasterNotFoundException::new);
   }
 
   public List<RoasterDto> findAll() {
