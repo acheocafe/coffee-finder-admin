@@ -1,7 +1,6 @@
 package br.com.coffeefinder.controller.helper;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
-import br.com.coffeefinder.domain.model.Roaster;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;

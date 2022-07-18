@@ -2,7 +2,7 @@ package br.com.coffeefinder.service;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
 import br.com.coffeefinder.domain.mapper.RoasterMapper;
-import br.com.coffeefinder.domain.model.Roaster;
+import br.com.coffeefinder.domain.entity.RoasterEntity;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.repository.RoasterRepository;
 import br.com.coffeefinder.service.interfaces.RoasterService;
@@ -23,11 +23,12 @@ public class RoasterServiceImpl implements RoasterService {
   }
 
   public RoasterDto save(final RoasterDto roaster) {
+
     return roasterMapper.toDto(roasterRepository.save(roasterMapper.toModel(roaster)));
   }
 
   public RoasterDto findById(final String id) {
-    Roaster roaster =
+    RoasterEntity roaster =
         roasterRepository
             .findById(Long.valueOf(id))
             .orElseThrow(() -> new RoasterNotFoundException(id));
