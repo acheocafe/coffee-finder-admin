@@ -25,7 +25,6 @@ public class RoasterServiceImpl implements RoasterService {
   }
 
   public RoasterDto save(final RoasterDto roaster) {
-
     return roasterMapper.toDto(roasterRepository.save(roasterMapper.toModel(roaster)));
   }
 
