@@ -15,6 +15,7 @@ import br.com.coffeefinder.service.VendorServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 /** VendorControllerTest */
-@WebMvcTest(controllers = VendorController.class)
+@WebMvcTest(controllers = VendorController.class,excludeAutoConfiguration = {
+    SecurityAutoConfiguration.class})
 class VendorControllerTest {
 
   @Autowired MockMvc mockMvc;
@@ -42,7 +44,9 @@ class VendorControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.content", hasSize(2)))
-        .andExpect(jsonPath("$.content[1].name").value("Vendor2"));
+        .andExpect(jsonPath("$.content[1].name").value("Vendor2"))
+        .andExpect(jsonPath("$.content[1].address.streetAddress").value("rua teste,8"));
+
   }
 
   @Test

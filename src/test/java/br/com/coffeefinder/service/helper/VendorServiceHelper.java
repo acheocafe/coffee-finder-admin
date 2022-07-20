@@ -33,7 +33,7 @@ public class VendorServiceHelper {
   public static AddressDto mockExpectedAddressDto() {
     return AddressDto.builder()
         .id("1")
-        .streetAdress("rua teste,8")
+        .streetAddress("rua teste,8")
         .city("Rio")
         .state("RJ")
         .zipCode("25444-323")
@@ -46,7 +46,7 @@ public class VendorServiceHelper {
         .name("Vendor2")
         .email("vendor2@outlook.com")
         .phone("552299922244")
-        .addressDto(mockExpectedAddressDto())
+        .address(mockExpectedAddressDto())
         .build();
   }
 

@@ -16,7 +16,7 @@ public class VendorDto {
   private String name;
   private String email;
   private String phone;
-  private AddressDto addressDto;
+  private AddressDto address;
 
   public Long idToLong() {
     return Long.valueOf(this.id);
