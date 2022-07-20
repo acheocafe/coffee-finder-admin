@@ -2,9 +2,7 @@ package br.com.coffeefinder.controller.helper;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.List;
-import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
