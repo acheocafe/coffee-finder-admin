@@ -1,19 +1,19 @@
 package br.com.coffeefinder.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.coffeefinder.domain.mapper.RoasterMapper;
 import br.com.coffeefinder.domain.entity.RoasterEntity;
+import br.com.coffeefinder.domain.mapper.RoasterMapper;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.repository.RoasterRepository;
-import java.util.Optional;
-
 import br.com.coffeefinder.service.helper.RoasterServiceHelper;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;

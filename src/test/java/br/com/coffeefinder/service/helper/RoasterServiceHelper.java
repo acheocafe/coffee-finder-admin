@@ -2,7 +2,6 @@ package br.com.coffeefinder.service.helper;
 
 import br.com.coffeefinder.domain.dto.RoasterDto;
 import br.com.coffeefinder.domain.entity.RoasterEntity;
-
 import java.util.List;
 import java.util.Optional;
 
