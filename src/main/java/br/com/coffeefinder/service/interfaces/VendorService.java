@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface RoasterService {
-  VendorDto save(final VendorDto roaster);
+public interface VendorService {
+  VendorDto save(final VendorDto vendor);
 
   VendorDto findById(final String id);
 
@@ -14,7 +14,7 @@ public interface RoasterService {
 
   Page<VendorDto> findPageable(Pageable pageable);
 
-  VendorDto updateRoaster(final VendorDto roaster);
+  VendorDto updateVendor(final VendorDto vendor);
 
-  void deleteRoasterById(final String roasterId);
+  void deleteVendorById(final String vendorId);
 }

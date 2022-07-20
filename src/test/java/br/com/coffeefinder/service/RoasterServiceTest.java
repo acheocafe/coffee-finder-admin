@@ -10,9 +10,9 @@ import static org.mockito.Mockito.when;
 
 import br.com.coffeefinder.domain.entity.VendorEntity;
 import br.com.coffeefinder.domain.mapper.VendorMapper;
-import br.com.coffeefinder.exception.RoasterNotFoundException;
-import br.com.coffeefinder.repository.RoasterRepository;
-import br.com.coffeefinder.service.helper.RoasterServiceHelper;
+import br.com.coffeefinder.exception.VendorNotFoundException;
+import br.com.coffeefinder.repository.VendorRepository;
+import br.com.coffeefinder.service.helper.VendorServiceHelper;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,75 +23,75 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** TestRoasterService */
+/** TestVendorService */
 @ExtendWith(MockitoExtension.class)
-class RoasterServiceTest {
+class VendorServiceTest {
 
-  @InjectMocks RoasterServiceImpl roasterService;
+  @InjectMocks VendorServiceImpl vendorService;
 
-  @Mock RoasterRepository roasterRepository;
+  @Mock VendorRepository vendorRepository;
 
   @Spy
-  VendorMapper roasterMapper = Mappers.getMapper(VendorMapper.class);
+  VendorMapper vendorMapper = Mappers.getMapper(VendorMapper.class);
 
   @Test
   void test_find_by_id_success() {
-    var expected = RoasterServiceHelper.mockExpectedRoaster();
-    when(roasterRepository.findById(2L))
-        .thenReturn(RoasterServiceHelper.mockRoasterRepositoryReturn());
-    var actual = roasterService.findById("2");
+    var expected = VendorServiceHelper.mockExpectedVendor();
+    when(vendorRepository.findById(2L))
+        .thenReturn(VendorServiceHelper.mockVendorRepositoryReturn());
+    var actual = vendorService.findById("2");
     assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
   }
 
   @Test
   void test_find_all_success() {
 
-    var expected = RoasterServiceHelper.mockExpectedFindAll();
+    var expected = VendorServiceHelper.mockExpectedFindAll();
 
-    when(roasterRepository.findAll()).thenReturn(RoasterServiceHelper.mockFindAllRespository());
-    var actual = roasterService.findAll();
+    when(vendorRepository.findAll()).thenReturn(VendorServiceHelper.mockFindAllRespository());
+    var actual = vendorService.findAll();
     assertThat(actual).usingRecursiveFieldByFieldElementComparator().isEqualTo(expected);
   }
 
   @Test
-  void test_save_roaster_success() {
-    when(roasterRepository.save(any(VendorEntity.class)))
-        .thenReturn(RoasterServiceHelper.mockSaveRoasterRepository());
-    roasterService.save(RoasterServiceHelper.mockExpectedSaveRoaster());
-    verify(roasterRepository, times(1)).save(any());
+  void test_save_vendor_success() {
+    when(vendorRepository.save(any(VendorEntity.class)))
+        .thenReturn(VendorServiceHelper.mockSaveVendorRepository());
+    vendorService.save(VendorServiceHelper.mockExpectedSaveVendor());
+    verify(vendorRepository, times(1)).save(any());
   }
 
   @Test
-  void test_update_roaster_success() {
+  void test_update_vendor_success() {
 
-    ArgumentCaptor<VendorEntity> roasterArgumentCaptor =
+    ArgumentCaptor<VendorEntity> vendorArgumentCaptor =
         ArgumentCaptor.forClass(VendorEntity.class);
-    var inputRoasterDto = RoasterServiceHelper.mockInputRoasterDto();
-    var actual = roasterService.updateRoaster(inputRoasterDto);
+    var inputVendorDto = VendorServiceHelper.mockInputVendorDto();
+    var actual = vendorService.updateVendor(inputVendorDto);
 
-    verify(roasterRepository, times(1)).save(roasterArgumentCaptor.capture());
+    verify(vendorRepository, times(1)).save(vendorArgumentCaptor.capture());
 
-    var updatedRoaster = roasterArgumentCaptor.getValue();
-    var expectedRoaster = RoasterServiceHelper.mockExpectedRoaster();
+    var updatedVendor = vendorArgumentCaptor.getValue();
+    var expectedVendor = VendorServiceHelper.mockExpectedVendor();
 
-    assertEquals(expectedRoaster.idToLong(), updatedRoaster.getId());
+    assertEquals(expectedVendor.idToLong(), updatedVendor.getId());
   }
 
   @Test
   // TODO: implement
-  void test_delete_roaster_success() {
-    String roasterTobeDelete = "2";
-    roasterService.deleteRoasterById(roasterTobeDelete);
-    verify(roasterRepository, times(1)).deleteById(Long.valueOf(roasterTobeDelete));
+  void test_delete_vendor_success() {
+    String vendorTobeDelete = "2";
+    vendorService.deleteVendorById(vendorTobeDelete);
+    verify(vendorRepository, times(1)).deleteById(Long.valueOf(vendorTobeDelete));
   }
 
   @Test
-  void test_nonexistent_roaster_id_should_throw_exception() {
+  void test_nonexistent_vendor_id_should_throw_exception() {
 
-    when(roasterRepository.findById(3L)).thenReturn(Optional.empty());
+    when(vendorRepository.findById(3L)).thenReturn(Optional.empty());
 
-    RoasterNotFoundException expectedException =
-        assertThrows(RoasterNotFoundException.class, () -> roasterService.findById("3"));
-    assertEquals("Could not find Roaster: 3", expectedException.getMessage());
+    VendorNotFoundException expectedException =
+        assertThrows(VendorNotFoundException.class, () -> vendorService.findById("3"));
+    assertEquals("Could not find Vendor: 3", expectedException.getMessage());
   }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-/** RoasterRepository */
+/** VendorRepository */
 @Repository
-public interface RoasterRepository
+public interface VendorRepository
     extends JpaRepository<VendorEntity, Long>, PagingAndSortingRepository<VendorEntity, Long> {}

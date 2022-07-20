@@ -6,40 +6,40 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
-public class RoasterControllerHelper {
+public class VendorControllerHelper {
 
-  public static List<VendorDto> mockRoastersListExpected() {
+  public static List<VendorDto> mockVendorsListExpected() {
     return List.of(
         VendorDto.builder()
             .id("1")
-            .name("Roaster1")
-            .email("roaster@gmail.com")
+            .name("Vendor1")
+            .email("vendor@gmail.com")
             .phone("219999991")
             .build(),
         VendorDto.builder()
             .id("2")
-            .name("Roaster2")
-            .email("roaster2@gmail.com")
+            .name("Vendor2")
+            .email("vendor2@gmail.com")
             .phone("219999992")
             .build());
   }
-public static Page<VendorDto> mockPageRoaster(){
-    return new PageImpl<>(mockRoastersListExpected());
+public static Page<VendorDto> mockPageVendor(){
+    return new PageImpl<>(mockVendorsListExpected());
 }
-  public static VendorDto mockExpectedRoaster() {
+  public static VendorDto mockExpectedVendor() {
     return VendorDto.builder()
         .id("2")
-        .name("Roaster2")
-        .email("roaster2@gmail.com")
+        .name("Vendor2")
+        .email("vendor2@gmail.com")
         .phone("219999992")
         .build();
   }
 
-  public static VendorDto mockInputRoaster() {
+  public static VendorDto mockInputVendor() {
     return VendorDto.builder()
         .id("2")
-        .name("Roaster2")
-        .email("roaster2@gmail.com")
+        .name("Vendor2")
+        .email("vendor2@gmail.com")
         .phone("219999992")
         .build();
   }

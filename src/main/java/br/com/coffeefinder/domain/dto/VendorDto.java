@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** RoasterDto */
+/** VendorDto */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +16,7 @@ public class VendorDto {
   private String name;
   private String email;
   private String phone;
-
+  private AddressDto addressDto;
   public Long idToLong() {
     return Long.valueOf(this.id);
   }

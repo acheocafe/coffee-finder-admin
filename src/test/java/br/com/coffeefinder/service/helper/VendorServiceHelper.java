@@ -5,23 +5,23 @@ import br.com.coffeefinder.domain.entity.VendorEntity;
 import java.util.List;
 import java.util.Optional;
 
-public class RoasterServiceHelper {
+public class VendorServiceHelper {
 
-  public static Optional<VendorEntity> mockRoasterRepositoryReturn() {
+  public static Optional<VendorEntity> mockVendorRepositoryReturn() {
     return Optional.ofNullable(
         VendorEntity.builder()
             .id(2L)
-            .name("Roaster2")
-            .email("roaster2@outlook.com")
+            .name("Vendor2")
+            .email("vendor2@outlook.com")
             .phone("552299922244")
             .build());
   }
 
-  public static VendorDto mockExpectedRoaster() {
+  public static VendorDto mockExpectedVendor() {
     return VendorDto.builder()
         .id("2")
-        .name("Roaster2")
-        .email("roaster2@outlook.com")
+        .name("Vendor2")
+        .email("vendor2@outlook.com")
         .phone("552299922244")
         .build();
   }
@@ -31,14 +31,14 @@ public class RoasterServiceHelper {
     return List.of(
         VendorDto.builder()
             .id("2")
-            .name("Roaster2")
-            .email("roaster2@outlook.com")
+            .name("Vendor2")
+            .email("vendor2@outlook.com")
             .phone("552299922242")
             .build(),
         VendorDto.builder()
             .id("3")
-            .name("Roaster3")
-            .email("roaster3@outlook.com")
+            .name("Vendor3")
+            .email("vendor3@outlook.com")
             .phone("552299922243")
             .build());
   }
@@ -48,41 +48,41 @@ public class RoasterServiceHelper {
     return List.of(
         VendorEntity.builder()
             .id(2L)
-            .name("Roaster2")
-            .email("roaster2@outlook.com")
+            .name("Vendor2")
+            .email("vendor2@outlook.com")
             .phone("552299922242")
             .build(),
         VendorEntity.builder()
             .id(3L)
-            .name("Roaster3")
-            .email("roaster3@outlook.com")
+            .name("Vendor3")
+            .email("vendor3@outlook.com")
             .phone("552299922243")
             .build());
   }
 
-  public static VendorDto mockExpectedSaveRoaster() {
+  public static VendorDto mockExpectedSaveVendor() {
     return VendorDto.builder()
         .id("1")
-        .name("Roaster2")
-        .email("roaster2@outlook.com")
+        .name("Vendor2")
+        .email("vendor2@outlook.com")
         .phone("552299922244")
         .build();
   }
 
-  public static VendorEntity mockSaveRoasterRepository() {
+  public static VendorEntity mockSaveVendorRepository() {
     return VendorEntity.builder()
         .id(2L)
-        .name("Roaster2")
-        .email("roaster2@outlook.com")
+        .name("Vendor2")
+        .email("vendor2@outlook.com")
         .phone("552299922244")
         .build();
   }
 
-  public static VendorDto mockInputRoasterDto() {
+  public static VendorDto mockInputVendorDto() {
     return VendorDto.builder()
         .id("2")
-        .name("Roaster2")
-        .email("roaster2@outlook.com")
+        .name("Vendor2")
+        .email("vendor2@outlook.com")
         .phone("552299922244")
         .build();
   }

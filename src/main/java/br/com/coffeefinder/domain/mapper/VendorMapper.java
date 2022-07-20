@@ -12,6 +12,6 @@ public interface VendorMapper {
 
   VendorDto toDto(VendorEntity model);
 
-  List<VendorDto> toDto(List<VendorEntity> roasters);
+  List<VendorDto> toDto(List<VendorEntity> vendors);
 
 }

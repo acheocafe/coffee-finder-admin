@@ -12,18 +12,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-/** Roaster */
+/** Vendor */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 @Entity
-@Table(name = "roasters")
+@Table(name = "vendors")
 public class VendorEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "roaster_id")
+  @Column(name = "vendor_id")
   private Long id;
   private String name;
   private String email;

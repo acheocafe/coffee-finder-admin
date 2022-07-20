@@ -1,17 +1,17 @@
 package br.com.coffeefinder.controller;
 
-import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.asJsonString;
-import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.mockExpectedRoaster;
-import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.mockInputRoaster;
-import static br.com.coffeefinder.controller.helper.RoasterControllerHelper.mockPageRoaster;
+import static br.com.coffeefinder.controller.helper.VendorControllerHelper.asJsonString;
+import static br.com.coffeefinder.controller.helper.VendorControllerHelper.mockExpectedVendor;
+import static br.com.coffeefinder.controller.helper.VendorControllerHelper.mockInputVendor;
+import static br.com.coffeefinder.controller.helper.VendorControllerHelper.mockPageVendor;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import br.com.coffeefinder.domain.dto.VendorDto;
-import br.com.coffeefinder.exception.RoasterNotFoundException;
-import br.com.coffeefinder.service.RoasterServiceImpl;
+import br.com.coffeefinder.exception.VendorNotFoundException;
+import br.com.coffeefinder.service.VendorServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,44 +23,44 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-/** RoasterControllerTest */
-@WebMvcTest(controllers = RoasterController.class)
-class RoasterControllerTest {
+/** VendorControllerTest */
+@WebMvcTest(controllers = VendorController.class)
+class VendorControllerTest {
 
   @Autowired MockMvc mockMvc;
 
-  @MockBean RoasterServiceImpl roasterServiceImpl;
+  @MockBean VendorServiceImpl vendorServiceImpl;
 
   @Test
   void get_all_records_success() throws Exception {
-    Page<VendorDto> expected = mockPageRoaster();
-    when(roasterServiceImpl.findPageable(ArgumentMatchers.isA(Pageable.class)))
+    Page<VendorDto> expected = mockPageVendor();
+    when(vendorServiceImpl.findPageable(ArgumentMatchers.isA(Pageable.class)))
         .thenReturn(expected);
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/api/v1/roasters?page=1&size=20")
+            MockMvcRequestBuilders.get("/api/v1/vendors?page=1&size=20")
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.content", hasSize(2)))
-        .andExpect(jsonPath("$.content[1].name").value("Roaster2"));
+        .andExpect(jsonPath("$.content[1].name").value("Vendor2"));
   }
 
   @Test
   void get_all_records_should_be_not_found() throws Exception {
-    when(roasterServiceImpl.findPageable(ArgumentMatchers.isA(Pageable.class))).thenThrow(new RoasterNotFoundException());
+    when(vendorServiceImpl.findPageable(ArgumentMatchers.isA(Pageable.class))).thenThrow(new VendorNotFoundException());
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/api/v1/roasters?page=1&size=40").contentType(MediaType.APPLICATION_JSON))
+            MockMvcRequestBuilders.get("/api/v1/vendors?page=1&size=40").contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isNotFound());
   }
 
   @Test
   void find_by_id_success() throws Exception {
-    when(roasterServiceImpl.findById("2")).thenReturn(mockExpectedRoaster());
+    when(vendorServiceImpl.findById("2")).thenReturn(mockExpectedVendor());
 
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/api/v1/roasters/2")
+            MockMvcRequestBuilders.get("/api/v1/vendors/2")
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.name").exists());
@@ -69,41 +69,41 @@ class RoasterControllerTest {
   @Test
   void find_by_id_should_be_not_found() throws Exception {
 
-    when(roasterServiceImpl.findById("2")).thenThrow(new RoasterNotFoundException());
+    when(vendorServiceImpl.findById("2")).thenThrow(new VendorNotFoundException());
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/api/v1/roasters/2")
+            MockMvcRequestBuilders.get("/api/v1/vendors/2")
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isNotFound());
   }
 
   @Test
-  void save_roaster_successs() throws Exception {
+  void save_vendor_successs() throws Exception {
 
-    var mockExpectedRoaster = mockExpectedRoaster();
-    var mockInputRoaster = mockInputRoaster();
-    when(roasterServiceImpl.save(mockInputRoaster)).thenReturn(mockExpectedRoaster);
+    var mockExpectedVendor = mockExpectedVendor();
+    var mockInputVendor = mockInputVendor();
+    when(vendorServiceImpl.save(mockInputVendor)).thenReturn(mockExpectedVendor);
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/api/v1/roasters/")
-                .content(asJsonString(mockInputRoaster))
+            MockMvcRequestBuilders.post("/api/v1/vendors/")
+                .content(asJsonString(mockInputVendor))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk());
   }
 
   @Test
-  void update_roaster_success() throws Exception {
+  void update_vendor_success() throws Exception {
 
-    var mockExpectedRoaster = mockExpectedRoaster();
-    var mockInputRoaster = mockInputRoaster();
+    var mockExpectedVendor = mockExpectedVendor();
+    var mockInputVendor = mockInputVendor();
 
-    when(roasterServiceImpl.updateRoaster(mockInputRoaster)).thenReturn(mockExpectedRoaster);
+    when(vendorServiceImpl.updateVendor(mockInputVendor)).thenReturn(mockExpectedVendor);
     mockMvc
         .perform(
-            MockMvcRequestBuilders.put("/api/v1/roasters/")
-                .content(asJsonString(mockInputRoaster))
+            MockMvcRequestBuilders.put("/api/v1/vendors/")
+                .content(asJsonString(mockInputVendor))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.id").value(mockExpectedRoaster.getId()));
+        .andExpect(jsonPath("$.id").value(mockExpectedVendor.getId()));
   }
 }

@@ -1,7 +1,7 @@
 package br.com.coffeefinder.controller;
 
 import br.com.coffeefinder.domain.dto.VendorDto;
-import br.com.coffeefinder.service.RoasterServiceImpl;
+import br.com.coffeefinder.service.VendorServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -14,36 +14,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** RoasterController * */
+/** VendorController * */
 @RestController
-@RequestMapping(value = {"/api/v1/roasters"})
-public class RoasterController {
+@RequestMapping(value = {"/api/v1/vendors"})
+public class VendorController {
 
-  private final RoasterServiceImpl roasterService;
+  private final VendorServiceImpl vendorService;
 
-  public RoasterController(RoasterServiceImpl roasterService) {
-    this.roasterService = roasterService;
+  public VendorController(VendorServiceImpl vendorService) {
+    this.vendorService = vendorService;
   }
 
   @GetMapping
   public ResponseEntity<Page<VendorDto>> findPageable(Pageable pageable) {
-    return new ResponseEntity<>(roasterService.findPageable(pageable), HttpStatus.OK);
+    return new ResponseEntity<>(vendorService.findPageable(pageable), HttpStatus.OK);
   }
 
   @GetMapping(value = "/{id}")
   public ResponseEntity<VendorDto> findById(@PathVariable String id) {
-    return new ResponseEntity<>(roasterService.findById(id), HttpStatus.OK);
+    return new ResponseEntity<>(vendorService.findById(id), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<VendorDto> saveRoaster(@RequestBody final VendorDto roasterModel) {
+  public ResponseEntity<VendorDto> saveVendor(@RequestBody final VendorDto vendorModel) {
 
-    return new ResponseEntity<>(roasterService.save(roasterModel), HttpStatus.OK);
+    return new ResponseEntity<>(vendorService.save(vendorModel), HttpStatus.OK);
   }
 
   @PutMapping
-  public VendorDto updateRoaster(
-      @RequestBody final VendorDto roasterModel) {
-    return roasterService.updateRoaster(roasterModel);
+  public VendorDto updateVendor(
+      @RequestBody final VendorDto vendorModel) {
+    return vendorService.updateVendor(vendorModel);
   }
 }
