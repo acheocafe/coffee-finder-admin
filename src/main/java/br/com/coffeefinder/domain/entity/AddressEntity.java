@@ -11,22 +11,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-/** Roaster */
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-@Entity
-@Table(name = "roasters")
-public class RoasterEntity {
+@Table(name = "address")
+public class AddressEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "roaster_id")
+  @Column(name = "id")
   private Long id;
+  private String streetAdress;
+  private String city;
+  private String state;
+  private String zipCode;
 
-  private String name;
-  private String email;
-  private String phone;
 }

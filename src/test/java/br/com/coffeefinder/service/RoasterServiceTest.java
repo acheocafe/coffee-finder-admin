@@ -8,8 +8,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.coffeefinder.domain.entity.RoasterEntity;
-import br.com.coffeefinder.domain.mapper.RoasterMapper;
+import br.com.coffeefinder.domain.entity.VendorEntity;
+import br.com.coffeefinder.domain.mapper.VendorMapper;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.repository.RoasterRepository;
 import br.com.coffeefinder.service.helper.RoasterServiceHelper;
@@ -31,7 +31,8 @@ class RoasterServiceTest {
 
   @Mock RoasterRepository roasterRepository;
 
-  @Spy RoasterMapper roasterMapper = Mappers.getMapper(RoasterMapper.class);
+  @Spy
+  VendorMapper roasterMapper = Mappers.getMapper(VendorMapper.class);
 
   @Test
   void test_find_by_id_success() {
@@ -54,7 +55,7 @@ class RoasterServiceTest {
 
   @Test
   void test_save_roaster_success() {
-    when(roasterRepository.save(any(RoasterEntity.class)))
+    when(roasterRepository.save(any(VendorEntity.class)))
         .thenReturn(RoasterServiceHelper.mockSaveRoasterRepository());
     roasterService.save(RoasterServiceHelper.mockExpectedSaveRoaster());
     verify(roasterRepository, times(1)).save(any());
@@ -63,8 +64,8 @@ class RoasterServiceTest {
   @Test
   void test_update_roaster_success() {
 
-    ArgumentCaptor<RoasterEntity> roasterArgumentCaptor =
-        ArgumentCaptor.forClass(RoasterEntity.class);
+    ArgumentCaptor<VendorEntity> roasterArgumentCaptor =
+        ArgumentCaptor.forClass(VendorEntity.class);
     var inputRoasterDto = RoasterServiceHelper.mockInputRoasterDto();
     var actual = roasterService.updateRoaster(inputRoasterDto);
 

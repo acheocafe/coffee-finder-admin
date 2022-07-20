@@ -9,7 +9,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.coffeefinder.domain.dto.RoasterDto;
+import br.com.coffeefinder.domain.dto.VendorDto;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.service.RoasterServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class RoasterControllerTest {
 
   @Test
   void get_all_records_success() throws Exception {
-    Page<RoasterDto> expected = mockPageRoaster();
+    Page<VendorDto> expected = mockPageRoaster();
     when(roasterServiceImpl.findPageable(ArgumentMatchers.isA(Pageable.class)))
         .thenReturn(expected);
     mockMvc

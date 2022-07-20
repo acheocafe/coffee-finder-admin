@@ -1,15 +1,15 @@
 package br.com.coffeefinder.service.helper;
 
-import br.com.coffeefinder.domain.dto.RoasterDto;
-import br.com.coffeefinder.domain.entity.RoasterEntity;
+import br.com.coffeefinder.domain.dto.VendorDto;
+import br.com.coffeefinder.domain.entity.VendorEntity;
 import java.util.List;
 import java.util.Optional;
 
 public class RoasterServiceHelper {
 
-  public static Optional<RoasterEntity> mockRoasterRepositoryReturn() {
+  public static Optional<VendorEntity> mockRoasterRepositoryReturn() {
     return Optional.ofNullable(
-        RoasterEntity.builder()
+        VendorEntity.builder()
             .id(2L)
             .name("Roaster2")
             .email("roaster2@outlook.com")
@@ -17,8 +17,8 @@ public class RoasterServiceHelper {
             .build());
   }
 
-  public static RoasterDto mockExpectedRoaster() {
-    return RoasterDto.builder()
+  public static VendorDto mockExpectedRoaster() {
+    return VendorDto.builder()
         .id("2")
         .name("Roaster2")
         .email("roaster2@outlook.com")
@@ -26,16 +26,16 @@ public class RoasterServiceHelper {
         .build();
   }
 
-  public static List<RoasterDto> mockExpectedFindAll() {
+  public static List<VendorDto> mockExpectedFindAll() {
 
     return List.of(
-        RoasterDto.builder()
+        VendorDto.builder()
             .id("2")
             .name("Roaster2")
             .email("roaster2@outlook.com")
             .phone("552299922242")
             .build(),
-        RoasterDto.builder()
+        VendorDto.builder()
             .id("3")
             .name("Roaster3")
             .email("roaster3@outlook.com")
@@ -43,16 +43,16 @@ public class RoasterServiceHelper {
             .build());
   }
 
-  public static List<RoasterEntity> mockFindAllRespository() {
+  public static List<VendorEntity> mockFindAllRespository() {
 
     return List.of(
-        RoasterEntity.builder()
+        VendorEntity.builder()
             .id(2L)
             .name("Roaster2")
             .email("roaster2@outlook.com")
             .phone("552299922242")
             .build(),
-        RoasterEntity.builder()
+        VendorEntity.builder()
             .id(3L)
             .name("Roaster3")
             .email("roaster3@outlook.com")
@@ -60,8 +60,8 @@ public class RoasterServiceHelper {
             .build());
   }
 
-  public static RoasterDto mockExpectedSaveRoaster() {
-    return RoasterDto.builder()
+  public static VendorDto mockExpectedSaveRoaster() {
+    return VendorDto.builder()
         .id("1")
         .name("Roaster2")
         .email("roaster2@outlook.com")
@@ -69,8 +69,8 @@ public class RoasterServiceHelper {
         .build();
   }
 
-  public static RoasterEntity mockSaveRoasterRepository() {
-    return RoasterEntity.builder()
+  public static VendorEntity mockSaveRoasterRepository() {
+    return VendorEntity.builder()
         .id(2L)
         .name("Roaster2")
         .email("roaster2@outlook.com")
@@ -78,8 +78,8 @@ public class RoasterServiceHelper {
         .build();
   }
 
-  public static RoasterDto mockInputRoasterDto() {
-    return RoasterDto.builder()
+  public static VendorDto mockInputRoasterDto() {
+    return VendorDto.builder()
         .id("2")
         .name("Roaster2")
         .email("roaster2@outlook.com")

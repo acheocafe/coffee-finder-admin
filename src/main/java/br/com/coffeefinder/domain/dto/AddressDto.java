@@ -5,19 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** RoasterDto */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RoasterDto {
-
-  private String id;
-  private String name;
-  private String email;
-  private String phone;
-
-  public Long idToLong() {
-    return Long.valueOf(this.id);
-  }
+public class AddressDto {
+  private Long id;
+  private String streetAdress;
+  private String city;
+  private String state;
+  private String zipCode;
 }

@@ -1,8 +1,8 @@
 package br.com.coffeefinder.service;
 
-import br.com.coffeefinder.domain.dto.RoasterDto;
-import br.com.coffeefinder.domain.entity.RoasterEntity;
-import br.com.coffeefinder.domain.mapper.RoasterMapper;
+import br.com.coffeefinder.domain.dto.VendorDto;
+import br.com.coffeefinder.domain.entity.VendorEntity;
+import br.com.coffeefinder.domain.mapper.VendorMapper;
 import br.com.coffeefinder.exception.RoasterNotFoundException;
 import br.com.coffeefinder.repository.RoasterRepository;
 import br.com.coffeefinder.service.interfaces.RoasterService;
@@ -17,36 +17,36 @@ import org.springframework.stereotype.Service;
 public class RoasterServiceImpl implements RoasterService {
 
   private final RoasterRepository roasterRepository;
-  private final RoasterMapper roasterMapper;
+  private final VendorMapper roasterMapper;
 
-  public RoasterServiceImpl(RoasterRepository roasterRepository, RoasterMapper roasterMapper) {
+  public RoasterServiceImpl(RoasterRepository roasterRepository, VendorMapper roasterMapper) {
     this.roasterRepository = roasterRepository;
     this.roasterMapper = roasterMapper;
   }
 
-  public RoasterDto save(final RoasterDto roaster) {
+  public VendorDto save(final VendorDto roaster) {
     return roasterMapper.toDto(roasterRepository.save(roasterMapper.toModel(roaster)));
   }
 
-  public RoasterDto findById(final String id) {
-    RoasterEntity roaster =
+  public VendorDto findById(final String id) {
+    VendorEntity roaster =
         roasterRepository
             .findById(Long.valueOf(id))
             .orElseThrow(() -> new RoasterNotFoundException(id));
     return roasterMapper.toDto(roaster);
   }
 
-  public Page<RoasterDto> findPageable(Pageable pageable) {
+  public Page<VendorDto> findPageable(Pageable pageable) {
     var result = Optional.of(roasterRepository.findAll(pageable).map(roasterMapper::toDto));
     return result.orElseThrow(RoasterNotFoundException::new);
   }
 
-  public List<RoasterDto> findAll() {
+  public List<VendorDto> findAll() {
     var allRoasters = Optional.of(roasterMapper.toDto(roasterRepository.findAll()));
     return allRoasters.orElseThrow(RoasterNotFoundException::new);
   }
 
-  public RoasterDto updateRoaster(final RoasterDto roaster) {
+  public VendorDto updateRoaster(final VendorDto roaster) {
     var updatedRoaster = roasterRepository.save(roasterMapper.toModel(roaster));
     return roasterMapper.toDto(updatedRoaster);
   }

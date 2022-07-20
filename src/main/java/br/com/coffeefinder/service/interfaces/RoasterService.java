@@ -1,20 +1,20 @@
 package br.com.coffeefinder.service.interfaces;
 
-import br.com.coffeefinder.domain.dto.RoasterDto;
+import br.com.coffeefinder.domain.dto.VendorDto;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface RoasterService {
-  RoasterDto save(final RoasterDto roaster);
+  VendorDto save(final VendorDto roaster);
 
-  RoasterDto findById(final String id);
+  VendorDto findById(final String id);
 
-  List<RoasterDto> findAll();
+  List<VendorDto> findAll();
 
-  Page<RoasterDto> findPageable(Pageable pageable);
+  Page<VendorDto> findPageable(Pageable pageable);
 
-  RoasterDto updateRoaster(final RoasterDto roaster);
+  VendorDto updateRoaster(final VendorDto roaster);
 
   void deleteRoasterById(final String roasterId);
 }
