@@ -25,7 +25,7 @@ public class VendorServiceImpl implements VendorService {
   }
 
   public VendorDto save(final VendorDto vendor) {
-    return vendorMapper.toDto(vendorRepository.save(vendorMapper.toModel(vendor)));
+    return vendorMapper.toDto(vendorRepository.save(vendorMapper.toEntity(vendor)));
   }
 
   public VendorDto findById(final String id) {
@@ -47,7 +47,7 @@ public class VendorServiceImpl implements VendorService {
   }
 
   public VendorDto updateVendor(final VendorDto vendor) {
-    var updatedVendor = vendorRepository.save(vendorMapper.toModel(vendor));
+    var updatedVendor = vendorRepository.save(vendorMapper.toEntity(vendor));
     return vendorMapper.toDto(updatedVendor);
   }
 
