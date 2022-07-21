@@ -14,8 +14,9 @@ import org.springframework.data.geo.Point;
 @Builder
 public class AddressDto {
   private String id;
-  private int ufCode;
-  private int countyCode;
-  private int zipCode;
+  private String ufCode;
+  private String countyCode;
+  private String zipCode;
+  private String addressName;
   private Point latitudeLongitude;
 }

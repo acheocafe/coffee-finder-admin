@@ -34,5 +34,5 @@ public class VendorEntity {
 
   @OneToMany
   @JoinColumn(name = "vendor_id")
-  private List<AddressEntity> address;
+  private List<AddressEntity> addressEntities;
 }

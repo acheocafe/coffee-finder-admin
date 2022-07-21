@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.geo.Point;
 
 public class VendorControllerHelper {
 
@@ -31,24 +32,26 @@ public class VendorControllerHelper {
     return new PageImpl<>(mockVendorsListExpected());
   }
 
-  public static AddressEntity mockAddressRepositoryReturn() {
-    return AddressEntity.builder()
-        .id(1L)
-        .streetAdress("rua teste,8")
-        .city("Rio")
-        .state("RJ")
-        .zipCode("25444-323")
-        .build();
+  public static List<AddressEntity> mockAddressRepositoryReturn() {
+    return List.of(
+        AddressEntity.builder()
+            .id(1L)
+            .addressName("rua teste,8")
+            .zipCode(22222520)
+            .ufCode(10)
+            .latitudeLongitude(new Point(-1010101, 20202))
+            .build());
   }
 
-  public static AddressDto mockAddressDto(String idMock) {
-    return AddressDto.builder()
+
+  public static List<AddressDto> mockAddressDto(String idMock) {
+    return List.of(AddressDto.builder()
         .id(idMock)
-        .streetAddress("rua teste,8")
-        .city("Rio")
-        .state("RJ")
+        .addressName("rua teste,8")
+        .ufCode("Rio")
         .zipCode("25444-323")
-        .build();
+        .latitudeLongitude(new Point(-7777,8888))
+        .build());
   }
 
   public static VendorDto mockExpectedVendor() {

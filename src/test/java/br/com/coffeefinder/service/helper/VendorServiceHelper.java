@@ -6,6 +6,7 @@ import br.com.coffeefinder.domain.entity.AddressEntity;
 import br.com.coffeefinder.domain.entity.VendorEntity;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.geo.Point;
 
 public class VendorServiceHelper {
 
@@ -16,28 +17,30 @@ public class VendorServiceHelper {
             .name("Vendor2")
             .email("vendor2@outlook.com")
             .phone("552299922244")
-            .address(mockAddressRepositoryReturn())
+            .addressEntities(mockAddressRepositoryReturn())
             .build());
   }
 
-  public static AddressEntity mockAddressRepositoryReturn() {
-    return AddressEntity.builder()
-        .id(1L)
-        .streetAdress("rua teste,8")
-        .city("Rio")
-        .state("RJ")
-        .zipCode("25444-323")
-        .build();
+  public static List<AddressEntity> mockAddressRepositoryReturn() {
+    return List.of(
+        AddressEntity.builder()
+            .id(1L)
+            .addressName("rua teste,8")
+            .zipCode(25444323)
+            .ufCode(10)
+            .latitudeLongitude(new Point(-1010101, 20202))
+            .build());
   }
 
-  public static AddressDto mockExpectedAddressDto() {
-    return AddressDto.builder()
-        .id("1")
-        .streetAddress("rua teste,8")
-        .city("Rio")
-        .state("RJ")
-        .zipCode("25444-323")
-        .build();
+  public static List<AddressDto> mockExpectedAddressDto() {
+    return List.of(
+        AddressDto.builder()
+            .id("1")
+            .addressName("rua teste,8")
+            .ufCode("10")
+            .zipCode("25444323")
+            .latitudeLongitude(new Point(-1010101.000000, 20202.000000))
+            .build());
   }
 
   public static VendorDto mockExpectedVendor() {

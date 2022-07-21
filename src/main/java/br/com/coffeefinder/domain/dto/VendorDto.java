@@ -1,5 +1,6 @@
 package br.com.coffeefinder.domain.dto;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class VendorDto {
   private String name;
   private String email;
   private String phone;
-  private AddressDto address;
+  private List<AddressDto> address;
 
   public Long idToLong() {
     return Long.valueOf(this.id);

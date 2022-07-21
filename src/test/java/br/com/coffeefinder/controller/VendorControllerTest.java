@@ -45,7 +45,7 @@ class VendorControllerTest {
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.content", hasSize(2)))
         .andExpect(jsonPath("$.content[1].name").value("Vendor2"))
-        .andExpect(jsonPath("$.content[1].address.streetAddress").value("rua teste,8"));
+        .andExpect(jsonPath("$.content[1].address[0].addressName").value("rua teste,8"));
 
   }
 
