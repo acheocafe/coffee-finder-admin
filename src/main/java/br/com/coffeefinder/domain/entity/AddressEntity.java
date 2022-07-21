@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.geo.Point;
 
 @Entity
 @AllArgsConstructor
@@ -23,9 +24,15 @@ public class AddressEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
-  private String streetAdress;
-  private String city;
-  private String state;
-  private String zipCode;
-
+  @Column(name="zip_code")
+  private int zipCode;
+  @Column(name = "uf_code")
+  private int ufCode;
+  @Column(name = "address_name")
+  private String addressName;
+  @Column(name = "latitude_longitude")
+  private Point latitudeLongitude;
 }
+
+
+
