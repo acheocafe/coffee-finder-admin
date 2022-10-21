@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>coffeefinder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>coffee-finder</name>
     <description>MVP Coffee Finder</description>
     <properties>
@@ -156,6 +156,7 @@
                 <version>3.9.1.2184</version>
             </plugin>
         </plugins>
+        <finalName>coffee-finder-admin</finalName>
     </build>
     <profiles>
         <profile>
